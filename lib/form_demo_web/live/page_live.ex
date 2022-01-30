@@ -6,13 +6,22 @@ defmodule FormDemoWeb.PageLive do
       :timer.send_interval(1000, self(), :tick)
     end
 
-    socket = assign(socket, auction_type: "online")
+    socket = assign(socket,
+      auction_type: "online",
+      catalog_number: "",
+    )
 
     {:ok, set_time(socket)}
   end
 
-  def handle_event("form_changed", %{"type" => type}, socket) do
+  def handle_event("form_changed", %{"type" => type} = values, socket) do
     socket = assign(socket, auction_type: type)
+
+    socket =
+      case values do
+        %{"catalog_number" => number} -> assign(socket, catalog_number: number)
+        _ -> socket
+      end
 
     {:noreply, socket}
   end
