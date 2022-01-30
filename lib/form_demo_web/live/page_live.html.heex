@@ -1,3 +1,20 @@
 <p>Hello world!</p>
 
 <p>The time is <%= @time %>!</p>
+
+<form phx-change="form_changed">
+  <label>
+    Auction type:
+    <select name="type">
+      <option value="online" selected={@auction_type == "online"}>Online</option>
+      <option value="hammer" selected={@auction_type == "hammer"}>Hammer</option>
+    </select>
+  </label>
+
+  <%= if @auction_type == "hammer" do %>
+    <label>
+      Catalogue number:
+      <input type="text" name="catalog_number" />
+    </label>
+  <% end %>
+</form>
