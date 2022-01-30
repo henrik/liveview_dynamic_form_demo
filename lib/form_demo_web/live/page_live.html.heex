@@ -14,7 +14,7 @@
   <%= if @auction_type == "hammer" do %>
     <label>
       Catalogue number:
-      <input type="text" name="catalog_number" value={@catalog_number} />
+      <input type="text" name="catalog_number" value={@catalog_number} id="catalog_number_field" phx-hook="Autofocus" />
     </label>
   <% end %>
 </form>
